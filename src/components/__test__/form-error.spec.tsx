@@ -10,8 +10,11 @@ describe("<FormError />", () => {
   });
 
   it("should null CheckFormError", () => {
-    const { container } = render(<CheckFormError errorMessage={null} />);
+    const { container, queryByText } = render(
+      <CheckFormError errorMessage={null} />
+    );
     expect(container).toBeEmptyDOMElement();
+    expect(queryByText("test")).toBeNull();
   });
 
   it("should render OK FormError", () => {
