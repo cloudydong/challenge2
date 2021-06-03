@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { authToken, isLoggedInVar } from "../apollo";
 import { LOCALSTORAGE_TOKEN } from "../constants";
 import { LoginInput } from "../__generated__/globalTypes";
+import { EMAIL_REGEX } from "../util";
 
 const LOGIN_MUTATION = gql`
   mutation loginMutation($loginInput: LoginInput!) {
@@ -84,8 +85,7 @@ export const Login = () => {
             <input
               {...register("email", {
                 required: "email is required",
-                pattern:
-                  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                pattern: EMAIL_REGEX,
               })}
               type="email"
               placeholder="이메일을 입력하세요"
