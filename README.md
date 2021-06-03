@@ -20,7 +20,9 @@ import '@testing-library/jest-dom/extend-expect'를 임포트 하면 해결됩�
 jest-dom 이 v4.2.4...v5.0.0 버전으로 바뀌면서 사용방법이  
 import "@testing-library/jest-dom"; 를 임포트하는 방법으로 변경되었습니다.  
 현재 두가지 방식 모두 에러를 해결합니다.  
-[출처](https://github.com/testing-library/jest-dom/compare/v4.2.4...v5.0.0)
+[출처](https://github.com/testing-library/jest-dom/compare/v4.2.4...v5.0.0)  
+또한 jest는 모든 테스트를 실행하기 전에 default로 setupTests.ts 파일을 먼저 실행합니다.
+setupTests.ts 파일 안에 import "@testing-library/jest-dom";을 작성하는 방법이 가장 좋습니다.
 
 ### npm 설치 목록
 

@@ -1,4 +1,3 @@
-import "@testing-library/jest-dom";
 import { render } from "@testing-library/react";
 import React from "react";
 import { Button } from "../button";
@@ -22,8 +21,6 @@ describe("<Button />", () => {
     const { container } = render(
       <Button canClick={false} loading={false} actionText={"test"} />
     );
-    expect(container.firstChild).toHaveClass(
-      "text-white py-3 transition-colors bg-rallyGreen-light opacity-50 pointer-events-none"
-    );
+    expect(container.firstChild).toHaveClass("pointer-events-none");
   });
 });
