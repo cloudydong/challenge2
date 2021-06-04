@@ -5,7 +5,7 @@ import { createMockClient, MockApolloClient } from "mock-apollo-client";
 import React from "react";
 import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter as Router } from "react-router-dom";
-import { Login } from "../login";
+import { Login, LOGIN_MUTATION } from "../login";
 
 describe("<Login />", () => {
   let mockedClient: MockApolloClient;
@@ -51,5 +51,38 @@ describe("<Login />", () => {
     });
     errorMessage = getByRole("alert");
     expect(errorMessage).toHaveTextContent(/password is required/i);
+  });
+
+  it("submits form and calls mutation", async () => {
+    const { getByPlaceholderText, getByRole } = renderResult;
+    const email = getByPlaceholderText("이메일을 입력하세요");
+    const password = getByPlaceholderText("비밀번호를 입력하세요");
+    const submitBtn = getByRole("button");
+    const formData = {
+      email: "test@email.com",
+      password: "1234",
+    };
+    const mockedMutationResponse = jest.fn().mockResolvedValue({
+      data: {
+        login: {
+          ok: true,
+          token: "test-token",
+          error: null,
+        },
+      },
+    });
+    mockedClient.setRequestHandler(LOGIN_MUTATION, mockedMutationResponse);
+    await waitFor(() => {
+      userEvent.type(email, formData.email);
+      userEvent.type(password, formData.password);
+      userEvent.click(submitBtn);
+    });
+    expect(mockedMutationResponse).toHaveBeenCalledTimes(1);
+    expect(mockedMutationResponse).toHaveBeenCalledWith({
+      loginInput: {
+        email: formData.email,
+        password: formData.password,
+      },
+    });
   });
 });
