@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { podcastList } from "../../__generated__/podcastList";
 
-const PODCAST_LIST_QUERY = gql`
+export const PODCAST_LIST_QUERY = gql`
   query podcastList {
     getAllPodcasts {
       podcasts {

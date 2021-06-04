@@ -8,7 +8,7 @@ import {
   getPodcastVariables,
 } from "../../__generated__/getPodcast";
 
-const GET_PODCAST_QUERY = gql`
+export const GET_PODCAST_QUERY = gql`
   query getPodcast($input: FindPodcastInput!) {
     getPodcast(input: $input) {
       podcast {
