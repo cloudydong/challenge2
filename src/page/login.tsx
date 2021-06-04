@@ -14,7 +14,7 @@ import { LOCALSTORAGE_TOKEN } from "../constants";
 import { LoginInput } from "../__generated__/globalTypes";
 import { EMAIL_REGEX } from "../util";
 
-const LOGIN_MUTATION = gql`
+export const LOGIN_MUTATION = gql`
   mutation loginMutation($loginInput: LoginInput!) {
     login(input: $loginInput) {
       ok
@@ -93,7 +93,7 @@ export const Login = () => {
             />
             <CheckFormError errorMessage={errors.email?.message} />
             {errors.email?.type === "pattern" && (
-              <FormError errorMessage={"허용되지 않는 이메일 주소 입니다."} />
+              <FormError errorMessage={"허용되지 않는 이메일 주소입니다."} />
             )}
             <input
               {...register("password", {
