@@ -59,7 +59,7 @@ export const PodcastDetail = () => {
           {!loading && (
             <div className="w-full flex flex-col text-white">
               {data?.getPodcast.podcast?.episodes.map((episode, index) => (
-                <div className="w-full flex flex-col">
+                <div key={index} className="w-full flex flex-col">
                   <Link
                     key={episode.id}
                     to={`/episode/${episode.id}`}
